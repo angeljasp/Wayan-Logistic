@@ -1,16 +1,22 @@
 :root {
     --verde-neon: #cefd55;
     --negro-profundo: #141321;
-    --verde-oscuro: #084734;
+    --verde-oscuro: #1a6b52; /* Mejor contraste */
     --blanco: #ffffff;
     --gris-claro: #f5f5f5;
+    --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transicion: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -18,7 +24,10 @@ body {
     color: var(--blanco);
     overflow-x: hidden;
     line-height: 1.6;
-    padding-top: 140px; /* Compensa el header grande */
+    padding-top: 140px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* HEADER CON LOGO GRANDE */
@@ -32,9 +41,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(20, 19, 33, 0.9);
+    background-color: rgba(20, 19, 33, 0.98);
     backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition: var(--transicion);
+    will-change: transform, background-color;
 }
 
 .header-container {
@@ -46,26 +56,28 @@ header {
     align-items: center;
 }
 
-/* LOGO PRINCIPAL GRANDE */
 .logo img {
-    height: 100px; /* Tamaño aumentado */
+    height: 100px;
     width: auto;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
+    object-fit: contain;
 }
 
-/* Header al hacer scroll */
 header.scrolled {
     padding: 12px 5%;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--sombra);
 }
 
 header.scrolled .logo img {
-    height: 70px; /* Tamaño reducido al hacer scroll */
+    height: 70px;
 }
 
+/* NAVEGACIÓN MEJORADA */
 nav ul {
     display: flex;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -78,8 +90,9 @@ nav ul li a {
     text-decoration: none;
     font-weight: 600;
     font-size: 16px;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
     position: relative;
+    padding: 5px 0;
 }
 
 nav ul li a::after {
@@ -93,12 +106,15 @@ nav ul li a::after {
     transition: width 0.3s ease;
 }
 
-nav ul li a:hover::after {
+nav ul li a:hover::after,
+nav ul li a:focus::after {
     width: 100%;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li a:focus {
     color: var(--verde-neon);
+    outline: none;
 }
 
 .btn-contacto {
@@ -110,21 +126,47 @@ nav ul li a:hover {
     text-transform: uppercase;
     font-size: 14px;
     letter-spacing: 1px;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
     border: none;
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(206, 253, 85, 0.3);
     text-decoration: none;
+    will-change: transform;
 }
 
-.btn-contacto:hover {
+.btn-contacto:hover,
+.btn-contacto:focus {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(206, 253, 85, 0.4);
+    outline: none;
+}
+
+/* MENÚ MÓVIL */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--blanco);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+    transition: var(--transicion);
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+    color: var(--verde-neon);
+    outline: none;
+}
+
+.menu-toggle[aria-expanded="true"] {
+    color: var(--verde-neon);
 }
 
 /* HERO SECTION */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     padding: 0 5%;
@@ -141,6 +183,7 @@ nav ul li a:hover {
     height: 100%;
     background: radial-gradient(circle at 70% 20%, rgba(206, 253, 85, 0.1) 0%, transparent 50%);
     z-index: -1;
+    will-change: transform;
 }
 
 .hero-content {
@@ -150,16 +193,18 @@ nav ul li a:hover {
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     margin-bottom: 20px;
     line-height: 1.2;
     background: linear-gradient(to right, var(--verde-neon), var(--blanco));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
 }
 
 .hero p {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
     margin-bottom: 30px;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.8);
@@ -168,6 +213,7 @@ nav ul li a:hover {
 .hero-btns {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .btn-primary {
@@ -179,17 +225,20 @@ nav ul li a:hover {
     text-transform: uppercase;
     font-size: 14px;
     letter-spacing: 1px;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
     border: none;
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(206, 253, 85, 0.3);
     text-decoration: none;
     display: inline-block;
+    will-change: transform;
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:focus {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(206, 253, 85, 0.4);
+    outline: none;
 }
 
 .btn-secondary {
@@ -201,16 +250,19 @@ nav ul li a:hover {
     text-transform: uppercase;
     font-size: 14px;
     letter-spacing: 1px;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
     border: 2px solid var(--verde-neon);
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
+    will-change: transform, background-color;
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover,
+.btn-secondary:focus {
     background-color: var(--verde-neon);
     color: var(--negro-profundo);
+    outline: none;
 }
 
 .hero-image {
@@ -238,22 +290,32 @@ nav ul li a:hover {
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+    will-change: transform;
 }
 
-/* Logo principal más grande */
 .logo-container img:nth-child(1) {
     grid-column: 1 / -1;
     max-width: 220px;
 }
 
-/* Efecto floating mejorado */
-.floating {
-    animation: floating 6s ease-in-out infinite;
-}
-
+/* Efecto floating optimizado */
 @keyframes floating {
     0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-20px) scale(1.03); }
+    50% { transform: translateY(-15px) scale(1.03); }
+}
+
+.floating {
+    animation: floating 8s ease-in-out infinite;
+    will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .floating {
+        animation: none;
+    }
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 /* SERVICES SECTION */
@@ -281,7 +343,7 @@ nav ul li a:hover {
 }
 
 .section-title h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 15px;
     color: var(--verde-neon);
 }
@@ -291,6 +353,7 @@ nav ul li a:hover {
     margin: 0 auto;
     color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
 .services-grid {
@@ -305,15 +368,21 @@ nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     padding: 40px 30px;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     opacity: 0;
     transform: translateY(30px);
+    will-change: transform, opacity, box-shadow;
+}
+
+.service-card.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) scale(1.02);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     border-color: var(--verde-neon);
 }
@@ -329,6 +398,11 @@ nav ul li a:hover {
     margin-bottom: 25px;
     color: var(--verde-neon);
     font-size: 1.8rem;
+    transition: var(--transicion);
+}
+
+.service-card:hover .service-icon {
+    transform: rotateY(180deg);
 }
 
 .service-card h3 {
@@ -349,19 +423,22 @@ nav ul li a:hover {
     font-weight: 600;
     display: flex;
     align-items: center;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
 }
 
 .service-link i {
     margin-left: 5px;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
 }
 
-.service-link:hover {
+.service-link:hover,
+.service-link:focus {
     color: var(--blanco);
+    outline: none;
 }
 
-.service-link:hover i {
+.service-link:hover i,
+.service-link:focus i {
     transform: translateX(5px);
 }
 
@@ -382,7 +459,8 @@ nav ul li a:hover {
     height: 200%;
     background: radial-gradient(circle, rgba(206, 253, 85, 0.05) 0%, transparent 70%);
     z-index: 0;
-    animation: rotate 30s linear infinite;
+    animation: rotate 60s linear infinite;
+    will-change: transform;
 }
 
 @keyframes rotate {
@@ -403,12 +481,21 @@ nav ul li a:hover {
     position: relative;
     opacity: 0;
     transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: transform, opacity;
+}
+
+.about-image.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .about-image img {
     width: 100%;
     border-radius: 15px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    aspect-ratio: 3/2;
 }
 
 .about-content {
@@ -416,7 +503,7 @@ nav ul li a:hover {
 }
 
 .about-content h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 20px;
     color: var(--verde-neon);
 }
@@ -454,10 +541,17 @@ nav ul li a:hover {
 .stat-item {
     opacity: 0;
     transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: transform, opacity;
+}
+
+.stat-item.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .stat-item h3 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     color: var(--verde-neon);
     margin-bottom: 5px;
 }
@@ -500,7 +594,15 @@ nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.05);
     padding: 20px 30px;
     border-radius: 10px;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
+    opacity: 0;
+    transform: translateY(30px);
+    will-change: transform, opacity;
+}
+
+.client-logo.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .client-logo:hover {
@@ -511,8 +613,10 @@ nav ul li a:hover {
 .client-logo img {
     height: 50px;
     width: auto;
+    max-width: 150px;
     filter: grayscale(100%) brightness(2);
-    transition: all 0.3s ease;
+    transition: var(--transicion);
+    object-fit: contain;
 }
 
 .client-logo:hover img {
@@ -540,12 +644,20 @@ nav ul li a:hover {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     opacity: 0;
     transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: transform, opacity;
+}
+
+.location-map.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .location-map iframe {
     width: 100%;
     height: 100%;
     border: none;
+    min-height: 400px;
 }
 
 .location-info {
@@ -553,7 +665,7 @@ nav ul li a:hover {
 }
 
 .location-info h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 20px;
     color: var(--verde-neon);
 }
@@ -599,6 +711,11 @@ nav ul li a:hover {
     color: var(--verde-neon);
     font-size: 1.2rem;
     flex-shrink: 0;
+    transition: var(--transicion);
+}
+
+.info-item:hover .info-icon {
+    transform: rotate(15deg);
 }
 
 .info-text h4 {
@@ -631,8 +748,9 @@ footer {
 }
 
 .footer-logo img {
-    height: 120px; /* Tamaño menor que el del header */
+    height: 120px;
     width: auto;
+    object-fit: contain;
 }
 
 .footer-about p {
@@ -664,31 +782,27 @@ footer {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-decoration: none;
+    will-change: transform;
 }
 
-.social-links a:hover {
+.social-links a:hover,
+.social-links a:focus {
     background: var(--verde-neon);
     color: var(--negro-profundo);
     transform: scale(1.15) translateZ(0);
     box-shadow: 0 0 15px rgba(206, 253, 85, 0.6);
+    outline: none;
 }
 
 .social-links a i {
     display: inline-block;
     line-height: 1;
     vertical-align: middle;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
 }
 
-.social-links a .fa-facebook-f,
-.social-links a .fa-instagram,
-.social-links a .fa-whatsapp,
-.social-links a .fa-linkedin-in {
-    -webkit-text-stroke: 0.5px transparent;
-    text-stroke: 0.5px transparent;
-}
-
-.footer-links h3, .footer-contact h3 {
+.footer-links h3, 
+.footer-contact h3 {
     font-size: 1.3rem;
     margin-bottom: 25px;
     color: var(--verde-neon);
@@ -705,7 +819,7 @@ footer {
 .footer-links ul li a {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: var(--transicion);
     display: flex;
     align-items: center;
 }
@@ -716,9 +830,11 @@ footer {
     color: var(--verde-neon);
 }
 
-.footer-links ul li a:hover {
+.footer-links ul li a:hover,
+.footer-links ul li a:focus {
     color: var(--verde-neon);
     transform: translateX(5px);
+    outline: none;
 }
 
 .footer-contact p {
@@ -842,7 +958,32 @@ footer {
     }
     
     nav ul {
-        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: var(--negro-profundo);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.3s ease;
+        z-index: 1000;
+        padding: 20px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    nav ul.active {
+        right: 0;
+    }
+    
+    nav ul li {
+        margin: 15px 0;
+    }
+    
+    .menu-toggle {
+        display: block;
     }
     
     .about-stats {
@@ -907,4 +1048,10 @@ footer {
     .footer-logo img {
         height: 80px;
     }
+    
+    .location-map {
+        height: 300px;
+    }
 }
+
+/* ANIMACIONES PARA PREFER-REDUCED-
