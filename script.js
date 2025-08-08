@@ -96,28 +96,3 @@ window.addEventListener('scroll', animateElements);
         nativeXHR.apply(this, arguments);
     };
 })();
-
-// [Todo tu JS original se mantiene igual]
-
-// Solo agregué esto para precargar el favicon
-function preloadFavicon() {
-  const links = [
-    { href: "favicon.ico", type: "image/x-icon" },
-    { href: "favicon-96x96.png", type: "image/png" },
-    { href: "apple-touch-icon.png", type: "image/png" }
-  ];
-  
-  links.forEach(link => {
-    const el = document.createElement("link");
-    el.rel = link.type === "image/x-icon" ? "shortcut icon" : "preload";
-    el.href = link.href;
-    el.as = "image";
-    document.head.appendChild(el);
-  });
-}
-
-// Agregar al init()
-function init() {
-  preloadFavicon();
-  // [Resto de tu código init() original]
-}
