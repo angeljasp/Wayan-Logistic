@@ -20,7 +20,7 @@ body {
     line-height: 1.6;
 }
 
-/* Estilos del encabezado */
+/* Estilos originales del header */
 header {
     position: fixed;
     top: 0;
@@ -36,31 +36,26 @@ header {
     transition: all 0.3s ease;
 }
 
-/* Solo el header se hace más pequeño al hacer scroll */
+/* Estilo solo para el logo - tamaño aumentado */
+.logo img {
+    height: 100px; /* Aumenté el tamaño a 100px (ajustable) */
+    width: auto; /* Mantiene proporciones */
+    transition: all 0.3s ease;
+    
+    /* Opcional: margen negativo para compensar el aumento */
+    margin-top: -10px;
+    margin-bottom: -10px;
+}
+
+/* Estilos del header al hacer scroll (sin afectar el logo) */
 header.scrolled {
     padding: 15px 5%;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* El logo siempre mantiene su tamaño grande */
-.logo img {
-    height: 70px; /* Tamaño grande fijo */
-    transition: all 0.3s ease;
-}
-
-/* Elimina esta regla para que el logo no cambie de tamaño */
-/* header.scrolled .logo img {
-    height: 40px;
-} */
-
-/* Opcional: Ajustar otros elementos si es necesario */
-header.scrolled nav ul li {
-    margin-left: 20px; /* Reducir espacio entre items de navegación */
-}
-
-header.scrolled .btn-contacto {
-    padding: 8px 20px; /* Ajustar botón de contacto */
-    font-size: 13px;
+/* Mantener el tamaño del logo al hacer scroll */
+header.scrolled .logo img {
+    height: 100px; /* Mismo tamaño que el estado normal */
 }
 nav ul {
     display: flex;
