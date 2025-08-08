@@ -6,235 +6,15 @@
   <title>WAYAN LOGISTIC SERVICE CORP S.A.S | Soluciones Logísticas en Ecuador</title>
   <meta name="description" content="Empresa líder en soluciones logísticas en Ecuador. Transporte terrestre, almacenamiento, logística internacional y cadena de frío con más de 10 años de experiencia.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --verde-neon: #cefd55;
-      --negro-profundo: #141321;
-      --verde-oscuro: #084734;
-      --blanco: #ffffff;
-      --gris-claro: #f5f5f5;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      background-color: var(--negro-profundo);
-      color: var(--blanco);
-      overflow-x: hidden;
-      line-height: 1.6;
-      padding-top: 100px;
-    }
-
-    /* HEADER CORREGIDO CON MENÚ HAMBURGUESA */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 15px 5%;
-      background-color: rgba(20, 19, 33, 0.9);
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-    }
-
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .logo img {
-      height: 70px;
-      width: auto;
-      transition: all 0.3s ease;
-      z-index: 1002;
-    }
-
-    /* Menú principal */
-    .nav-menu {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-menu ul {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-menu li {
-      margin-left: 30px;
-      position: relative;
-    }
-
-    .nav-menu a {
-      color: var(--blanco);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .nav-menu a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--verde-neon);
-      transition: width 0.3s ease;
-    }
-
-    .nav-menu a:hover::after {
-      width: 100%;
-    }
-
-    .nav-menu a:hover {
-      color: var(--verde-neon);
-    }
-
-    /* Botón de contacto */
-    .btn-contacto {
-      background-color: var(--verde-neon);
-      color: var(--negro-profundo);
-      padding: 10px 25px;
-      border-radius: 30px;
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 14px;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(206, 253, 85, 0.3);
-      text-decoration: none;
-      margin-left: 30px;
-    }
-
-    .btn-contacto:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(206, 253, 85, 0.4);
-    }
-
-    /* Menú hamburguesa (oculto en desktop) */
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--blanco);
-      font-size: 1.8rem;
-      cursor: pointer;
-      z-index: 1002;
-      padding: 10px;
-    }
-
-    /* Header al hacer scroll */
-    header.scrolled {
-      padding: 10px 5%;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    header.scrolled .logo img {
-      height: 50px;
-    }
-
-    /* Estilos responsivos */
-    @media (max-width: 992px) {
-      .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 300px;
-        height: 100vh;
-        background-color: var(--negro-profundo);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: right 0.4s ease;
-        padding: 80px 20px 20px;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-        z-index: 1001;
-      }
-      
-      .nav-menu.active {
-        right: 0;
-      }
-      
-      .nav-menu ul {
-        flex-direction: column;
-        width: 100%;
-      }
-      
-      .nav-menu li {
-        margin: 15px 0;
-        width: 100%;
-        text-align: center;
-      }
-      
-      .nav-menu a {
-        font-size: 1.2rem;
-        padding: 10px 0;
-        display: block;
-        width: 100%;
-      }
-      
-      .menu-toggle {
-        display: block;
-        order: 1;
-      }
-      
-      .btn-contacto {
-        margin: 30px 0 0;
-        width: 80%;
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .nav-menu {
-        width: 100%;
-      }
-    }
-
-    /* [MANTENGO TODOS TUS ESTILOS ORIGINALES PARA LAS DEMÁS SECCIONES] */
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 0 5%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 70% 20%, rgba(206, 253, 85, 0.1) 0%, transparent 50%);
-      z-index: -1;
-    }
-
-    /* ... (TODOS TUS ESTILOS ORIGINALES SE MANTIENEN IGUAL) ... */
+    /* CSS será insertado aquí o enlazado externamente */
   </style>
 </head>
 <body>
-  <!-- Encabezado corregido con menú hamburguesa -->
+  <!-- Encabezado -->
   <header id="header">
     <div class="header-container">
       <div class="logo">
@@ -259,59 +39,236 @@
     </div>
   </header>
 
-  <!-- [MANTENGO TODO EL RESTO DE TU HTML ORIGINAL EXACTAMENTE IGUAL] -->
+  <!-- Sección Hero -->
   <section class="hero" id="inicio">
-    <!-- ... -->
+    <div class="hero-content">
+      <h1>Soluciones logísticas integrales en Ecuador</h1>
+      <p>Más de 10 años de experiencia brindando servicios logísticos de calidad con tecnología de punta y personal altamente calificado.</p>
+      <div class="hero-btns">
+        <a href="#servicios" class="btn-primary">Nuestros Servicios</a>
+        <a href="#contacto" class="btn-secondary">Contáctanos</a>
+      </div>
+    </div>
+    
+    <div class="hero-image floating">
+      <div class="logo-container">
+        <img src="https://i.ibb.co/zTyZnLwm/logo-color03-png.png" alt="WAYAN LOGISTIC" loading="lazy">
+        <img src="https://i.ibb.co/6bXyYVJ/logo-blanco01.png" alt="WAYAN LOGISTIC" loading="lazy">
+        <img src="https://i.ibb.co/6bXyYVJ/logo-blanco01.png" alt="WAYAN LOGISTIC" loading="lazy">
+        <img src="https://i.ibb.co/zTyZnLwm/logo-color03-png.png" alt="WAYAN LOGISTIC" loading="lazy">
+      </div>
+    </div>
   </section>
 
+  <!-- Sección Servicios -->
   <section class="services" id="servicios">
-    <!-- ... -->
+    <div class="section-title">
+      <h2>Nuestros Servicios</h2>
+      <p>Ofrecemos soluciones logísticas completas adaptadas a las necesidades específicas de cada cliente.</p>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-truck"></i>
+        </div>
+        <h3>Transporte Terrestre</h3>
+        <p>Servicio de transporte nacional con flota moderna y equipada para todo tipo de carga.</p>
+        <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-warehouse"></i>
+        </div>
+        <h3>Almacenamiento</h3>
+        <p>Almacenes estratégicamente ubicados con control de temperatura y seguridad las 24 horas.</p>
+        <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-ship"></i>
+        </div>
+        <h3>Logística Internacional</h3>
+        <p>Importación y exportación de mercancías con coordinación puerta a puerta.</p>
+        <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+      </div>
+      
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-snowflake"></i>
+        </div>
+        <h3>Cadena de Frío</h3>
+        <p>Transporte y almacenamiento refrigerado para productos que requieren control de temperatura.</p>
+        <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
   </section>
 
+  <!-- Sección Nosotros -->
   <section class="about" id="nosotros">
-    <!-- ... -->
+    <div class="about-container">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d8" alt="Almacén WAYAN LOGISTIC" loading="lazy">
+      </div>
+      
+      <div class="about-content">
+        <h2>Sobre Nosotros</h2>
+        <p>WAYAN LOGISTIC SERVICE CORP S.A.S es una empresa ecuatoriana con más de 10 años de experiencia en el sector logístico, especializada en soluciones integrales para la cadena de suministro.</p>
+        
+        <ul class="about-list">
+          <li><i class="fas fa-check-circle"></i> Más de 50 empleados calificados</li>
+          <li><i class="fas fa-check-circle"></i> Flota propia de más de 30 vehículos</li>
+          <li><i class="fas fa-check-circle"></i> 10,000 m² de almacenes estratégicos</li>
+          <li><i class="fas fa-check-circle"></i> Cobertura en todo el Ecuador</li>
+        </ul>
+        
+        <div class="about-stats">
+          <div class="stat-item">
+            <h3>10+</h3>
+            <p>Años de Experiencia</p>
+          </div>
+          <div class="stat-item">
+            <h3>500+</h3>
+            <p>Clientes Satisfechos</p>
+          </div>
+          <div class="stat-item">
+            <h3>98%</h3>
+            <p>Entregas a Tiempo</p>
+          </div>
+          <div class="stat-item">
+            <h3>24/7</h3>
+            <p>Soporte al Cliente</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- Sección Clientes -->
   <section class="clients" id="clientes">
-    <!-- ... -->
+    <div class="section-title">
+      <h2>Nuestros Clientes</h2>
+      <p>Colaboramos con empresas líderes en diversos sectores de la industria ecuatoriana.</p>
+    </div>
+    
+    <div class="clients-grid">
+      <div class="client-logo">
+        <img src="https://via.placeholder.com/150x50?text=Cliente+1" alt="Cliente 1" loading="lazy">
+      </div>
+      <div class="client-logo">
+        <img src="https://via.placeholder.com/150x50?text=Cliente+2" alt="Cliente 2" loading="lazy">
+      </div>
+      <div class="client-logo">
+        <img src="https://via.placeholder.com/150x50?text=Cliente+3" alt="Cliente 3" loading="lazy">
+      </div>
+      <div class="client-logo">
+        <img src="https://via.placeholder.com/150x50?text=Cliente+4" alt="Cliente 4" loading="lazy">
+      </div>
+      <div class="client-logo">
+        <img src="https://via.placeholder.com/150x50?text=Cliente+5" alt="Cliente 5" loading="lazy">
+      </div>
+    </div>
   </section>
 
+  <!-- Sección Ubicación -->
   <section class="location" id="ubicacion">
-    <!-- ... -->
+    <div class="location-container">
+      <div class="location-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.795959577267!2d-78.4979076852438!3d-0.20619999999999685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59a4002427c9f%3A0x44b991158f955b4b!2sQuito!5e0!3m2!1ses!2sec!4v1620000000000!5m2!1ses!2sec" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      
+      <div class="location-info">
+        <h2>Nuestra Ubicación</h2>
+        <p>Contamos con instalaciones estratégicamente ubicadas en las principales ciudades del Ecuador para brindar un servicio eficiente y oportuno.</p>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="info-text">
+            <h4>Oficina Principal</h4>
+            <p>Av. Amazonas N34-451 y Av. Atahualpa, Quito, Ecuador</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="info-text">
+            <h4>Teléfono</h4>
+            <p>+593 2 123 4567</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="info-text">
+            <h4>Email</h4>
+            <p>info@wayanlogistic.com</p>
+          </div>
+        </div>
+        
+        <div class="info-item">
+          <div class="info-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="info-text">
+            <h4>Horario de Atención</h4>
+            <p>Lunes a Viernes: 8:00 - 18:00<br>Sábados: 9:00 - 13:00</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <!-- ... -->
+    <div class="footer-container">
+      <div class="footer-about">
+        <div class="footer-logo">
+          <img src="https://i.ibb.co/zTyZnLwm/logo-color03-png.png" alt="WAYAN LOGISTIC" loading="lazy">
+        </div>
+        <p>Somos una empresa comprometida con la excelencia en servicios logísticos, brindando soluciones innovadoras y personalizadas.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h3>Enlaces Rápidos</h3>
+        <ul>
+          <li><a href="#inicio"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+          <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
+          <li><a href="#nosotros"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
+          <li><a href="#ubicacion"><i class="fas fa-chevron-right"></i> Ubicación</a></li>
+          <li><a href="#clientes"><i class="fas fa-chevron-right"></i> Clientes</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-contact">
+        <h3>Contacto</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Av. Amazonas N34-451, Quito, Ecuador</p>
+        <p><i class="fas fa-phone-alt"></i> +593 2 123 4567</p>
+        <p><i class="fas fa-envelope"></i> info@wayanlogistic.com</p>
+        <p><i class="fas fa-clock"></i> Lunes a Viernes: 8:00 - 18:00</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2023 WAYAN LOGISTIC SERVICE CORP S.A.S. Todos los derechos reservados.</p>
+    </div>
   </footer>
 
   <script>
-    // Menú hamburguesa funcional
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuToggle = document.querySelector('.menu-toggle');
-      const navMenu = document.querySelector('.nav-menu');
-      
-      // Abrir/cerrar menú
-      menuToggle.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-        menuToggle.innerHTML = navMenu.classList.contains('active') ? 
-          '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-      });
-      
-      // Cerrar menú al hacer clic en un enlace
-      const navLinks = document.querySelectorAll('.nav-menu a');
-      navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          navMenu.classList.remove('active');
-          menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        });
-      });
-      
-      // Header al hacer scroll
-      window.addEventListener('scroll', function() {
-        const header = document.getElementById('header');
-        header.classList.toggle('scrolled', window.scrollY > 50);
-      });
-    });
+    // JavaScript será insertado aquí o enlazado externamente
   </script>
 </body>
 </html>
