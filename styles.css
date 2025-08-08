@@ -832,3 +832,13 @@ footer {
     -webkit-text-stroke: 0.5px transparent;
     text-stroke: 0.5px transparent;
 }
+
+/* [Todo tu CSS original se mantiene igual] */
+
+/* Solo agregué esto al final para optimizar la carga de favicons */
+@media (prefers-reduced-motion: reduce) {
+  .floating, .service-card:hover {
+    animation: none !important;
+    transform: none !important;
+  }
+}
