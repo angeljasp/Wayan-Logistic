@@ -109,7 +109,7 @@ nav ul li a:hover {
     box-shadow: 0 8px 25px rgba(206, 253, 85, 0.4);
 }
 
-/* Estilos del héroe */
+/* Estilos optimizados para la sección hero */
 .hero {
     height: 100vh;
     display: flex;
@@ -132,6 +132,8 @@ nav ul li a:hover {
 
 .hero-content {
     max-width: 600px;
+    z-index: 2;
+    position: relative;
 }
 
 .hero h1 {
@@ -201,25 +203,44 @@ nav ul li a:hover {
 .hero-image {
     position: absolute;
     right: 5%;
-    bottom: 10%;
     width: 40%;
     max-width: 600px;
-    animation: float 6s ease-in-out infinite;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
 }
 
-.hero-image img {
+.logo-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    place-items: center;
     width: 100%;
-    height: auto;
-    display: block;
 }
 
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
+.logo-container img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+}
+
+/* Logo principal más grande */
+.logo-container img:nth-child(1) {
+    grid-column: 1 / -1;
+    max-width: 220px;
+}
+
+/* Efecto floating mejorado */
+.floating {
+    animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.03); }
 }
 
 /* Estilos de servicios */
@@ -612,21 +633,45 @@ footer {
 }
 
 .social-links a {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
+    background: rgba(20, 19, 33, 0.9);
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: var(--blanco);
-    transition: all 0.3s ease;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none;
 }
 
 .social-links a:hover {
-    background-color: var(--verde-neon);
+    background: var(--verde-neon);
     color: var(--negro-profundo);
-    transform: translateY(-3px);
+    transform: scale(1.15) translateZ(0);
+    box-shadow: 0 0 15px rgba(206, 253, 85, 0.6);
+}
+
+.social-links a i {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+.social-links a .fa-facebook-f,
+.social-links a .fa-instagram,
+.social-links a .fa-whatsapp,
+.social-links a .fa-linkedin-in {
+    -webkit-text-stroke: 0.5px transparent;
+    text-stroke: 0.5px transparent;
 }
 
 .footer-links h3, .footer-contact h3 {
@@ -682,15 +727,47 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Efectos flotantes */
-.floating {
-    animation: floating 3s ease-in-out infinite;
+/* Media queries para responsive */
+@media (max-width: 1200px) {
+    .logo-container img {
+        max-width: 150px;
+    }
+    .logo-container img:nth-child(1) {
+        max-width: 180px;
+    }
 }
 
-/* Responsive */
 @media (max-width: 992px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 120px;
+        height: auto;
+        min-height: 100vh;
+    }
+    
     .hero h1 {
         font-size: 2.8rem;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 3rem;
+    }
+    
+    .hero-image {
+        position: relative;
+        right: auto;
+        width: 100%;
+        margin: 2rem 0;
+    }
+    
+    .logo-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .logo-container img:nth-child(1) {
+        grid-column: auto;
     }
     
     .about-container, .location-container {
@@ -701,26 +778,12 @@ footer {
         width: 100%;
     }
     
-    .hero-image {
-        position: relative;
-        right: auto;
-        bottom: auto;
-        width: 100%;
-        margin-top: 50px;
-    }
-    
     .services-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }
 
 @media (max-width: 768px) {
-    .hero {
-        height: auto;
-        padding-top: 120px;
-        padding-bottom: 80px;
-    }
-    
     .hero h1 {
         font-size: 2.2rem;
     }
@@ -760,6 +823,14 @@ footer {
     .stat-item h3 {
         font-size: 2rem;
     }
+    
+    .logo-container img {
+        max-width: 120px;
+    }
+    
+    .logo-container {
+        gap: 1.5rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -778,57 +849,17 @@ footer {
     .footer-container {
         grid-template-columns: 1fr;
     }
-}
-/* ====================== */
-/* ESTILOS REDES SOCIALES - SOLUCIÓN DEFINITIVA */
-/* ====================== */
-.social-links {
-    display: flex;
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.social-links a {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(20, 19, 33, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 20px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    /* Solución definitiva para líneas */
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-decoration: none;
-}
-
-.social-links a:hover {
-    background: var(--verde-neon);
-    color: var(--negro-profundo);
-    transform: scale(1.15) translateZ(0);
-    box-shadow: 0 0 15px rgba(206, 253, 85, 0.6);
-}
-
-/* Estilos específicos para Font Awesome */
-.social-links a i {
-    display: inline-block;
-    line-height: 1;
-    vertical-align: middle;
-    transition: all 0.3s ease;
-}
-
-/* Corrección para iconos específicos */
-.social-links a .fa-facebook-f,
-.social-links a .fa-instagram,
-.social-links a .fa-whatsapp,
-.social-links a .fa-linkedin-in {
-    -webkit-text-stroke: 0.5px transparent;
-    text-stroke: 0.5px transparent;
+    
+    .logo-container img {
+        max-width: 100px;
+    }
+    
+    .logo-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .logo-container img:nth-child(3) {
+        grid-column: 1 / -1;
+    }
 }
