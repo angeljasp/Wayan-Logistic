@@ -18,9 +18,10 @@ body {
     color: var(--blanco);
     overflow-x: hidden;
     line-height: 1.6;
+    padding-top: 140px; /* Compensa el header grande */
 }
 
-/* Estilos originales del header */
+/* HEADER CON LOGO GRANDE */
 header {
     position: fixed;
     top: 0;
@@ -36,27 +37,32 @@ header {
     transition: all 0.3s ease;
 }
 
-/* Estilo solo para el logo - tamaño aumentado */
-.logo img {
-    height: 100px; /* Aumenté el tamaño a 100px (ajustable) */
-    width: auto; /* Mantiene proporciones */
-    transition: all 0.3s ease;
-    
-    /* Opcional: margen negativo para compensar el aumento */
-    margin-top: -10px;
-    margin-bottom: -10px;
+.header-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Estilos del header al hacer scroll (sin afectar el logo) */
+/* LOGO PRINCIPAL GRANDE */
+.logo img {
+    height: 100px; /* Tamaño aumentado */
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+/* Header al hacer scroll */
 header.scrolled {
-    padding: 15px 5%;
+    padding: 12px 5%;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Mantener el tamaño del logo al hacer scroll */
 header.scrolled .logo img {
-    height: 100px; /* Mismo tamaño que el estado normal */
+    height: 70px; /* Tamaño reducido al hacer scroll */
 }
+
 nav ul {
     display: flex;
     list-style: none;
@@ -116,7 +122,7 @@ nav ul li a:hover {
     box-shadow: 0 8px 25px rgba(206, 253, 85, 0.4);
 }
 
-/* Estilos optimizados para la sección hero */
+/* HERO SECTION */
 .hero {
     height: 100vh;
     display: flex;
@@ -250,7 +256,7 @@ nav ul li a:hover {
     50% { transform: translateY(-20px) scale(1.03); }
 }
 
-/* Estilos de servicios */
+/* SERVICES SECTION */
 .services {
     padding: 100px 5%;
     background-color: var(--negro-profundo);
@@ -359,7 +365,7 @@ nav ul li a:hover {
     transform: translateX(5px);
 }
 
-/* Estilos de about */
+/* ABOUT SECTION */
 .about {
     padding: 100px 5%;
     background-color: var(--verde-oscuro);
@@ -463,7 +469,7 @@ nav ul li a:hover {
     letter-spacing: 1px;
 }
 
-/* Estilos de clientes */
+/* CLIENTS SECTION */
 .clients {
     padding: 100px 5%;
     background-color: var(--negro-profundo);
@@ -513,7 +519,7 @@ nav ul li a:hover {
     filter: grayscale(0%) brightness(1);
 }
 
-/* Estilos de ubicación */
+/* LOCATION SECTION */
 .location {
     padding: 100px 5%;
     background-color: var(--negro-profundo);
@@ -606,7 +612,7 @@ nav ul li a:hover {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* Estilos del footer */
+/* FOOTER */
 footer {
     background-color: #0a0a12;
     padding: 80px 5% 30px;
@@ -625,7 +631,8 @@ footer {
 }
 
 .footer-logo img {
-    height: 200px;
+    height: 120px; /* Tamaño menor que el del header */
+    width: auto;
 }
 
 .footer-about p {
@@ -734,13 +741,19 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Media queries para responsive */
+/* RESPONSIVE DESIGN */
 @media (max-width: 1200px) {
+    .logo img {
+        height: 90px;
+    }
+    header.scrolled .logo img {
+        height: 65px;
+    }
     .logo-container img {
-        max-width: 150px;
+        max-width: 160px;
     }
     .logo-container img:nth-child(1) {
-        max-width: 180px;
+        max-width: 200px;
     }
 }
 
@@ -753,8 +766,12 @@ footer {
         min-height: 100vh;
     }
     
-    .hero h1 {
-        font-size: 2.8rem;
+    .logo img {
+        height: 80px;
+    }
+    
+    header.scrolled .logo img {
+        height: 60px;
     }
     
     .hero-content {
@@ -788,11 +805,23 @@ footer {
     .services-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
+    
+    .footer-logo img {
+        height: 100px;
+    }
 }
 
 @media (max-width: 768px) {
+    .logo img {
+        height: 70px;
+    }
+    
+    header.scrolled .logo img {
+        height: 50px;
+    }
+    
     .hero h1 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
     
     .hero p {
@@ -816,13 +845,6 @@ footer {
         display: none;
     }
     
-    .menu-toggle {
-        display: block;
-        font-size: 1.5rem;
-        color: var(--blanco);
-        cursor: pointer;
-    }
-    
     .about-stats {
         grid-template-columns: 1fr;
     }
@@ -838,11 +860,23 @@ footer {
     .logo-container {
         gap: 1.5rem;
     }
+    
+    .footer-logo img {
+        height: 90px;
+    }
 }
 
 @media (max-width: 576px) {
+    .logo img {
+        height: 60px;
+    }
+    
+    header.scrolled .logo img {
+        height: 45px;
+    }
+    
     .hero h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     
     .section-title h2 {
@@ -868,5 +902,9 @@ footer {
     
     .logo-container img:nth-child(3) {
         grid-column: 1 / -1;
+    }
+    
+    .footer-logo img {
+        height: 80px;
     }
 }
