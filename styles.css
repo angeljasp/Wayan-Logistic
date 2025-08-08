@@ -36,20 +36,32 @@ header {
     transition: all 0.3s ease;
 }
 
+/* Solo el header se hace más pequeño al hacer scroll */
 header.scrolled {
     padding: 15px 5%;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* El logo siempre mantiene su tamaño grande */
 .logo img {
-    height: 80px;
+    height: 70px; /* Tamaño grande fijo */
     transition: all 0.3s ease;
 }
 
-header.scrolled .logo img {
-    height: 20px;
+/* Elimina esta regla para que el logo no cambie de tamaño */
+/* header.scrolled .logo img {
+    height: 40px;
+} */
+
+/* Opcional: Ajustar otros elementos si es necesario */
+header.scrolled nav ul li {
+    margin-left: 20px; /* Reducir espacio entre items de navegación */
 }
 
+header.scrolled .btn-contacto {
+    padding: 8px 20px; /* Ajustar botón de contacto */
+    font-size: 13px;
+}
 nav ul {
     display: flex;
     list-style: none;
