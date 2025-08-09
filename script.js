@@ -45,32 +45,25 @@ function init() {
     });
 
     // Menú móvil responsivo (ACTUALIZADO)
-    const menuToggle = document.createElement('button');
-    menuToggle.className = 'menu-toggle';
-    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-    menuToggle.setAttribute('aria-label', 'Menú');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    document.querySelector('.header-container').appendChild(menuToggle);
+    // Menú móvil
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('nav');
 
-    const navMenu = document.querySelector('nav ul');
-    
-    menuToggle.addEventListener('click', () => {
-        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        menuToggle.setAttribute('aria-expanded', !isExpanded);
-        navMenu.classList.toggle('active');
-        
-        // Bloquear scroll cuando el menú está abierto
-        document.body.style.overflow = isExpanded ? '' : 'hidden';
-    });
+menuToggle.addEventListener('click', () => {
+    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', !isExpanded);
+    navMenu.classList.toggle('active');
+    document.body.style.overflow = isExpanded ? '' : 'hidden';
+});
 
-    // Cerrar menú al hacer clic en un enlace
-    document.querySelectorAll('nav ul li a').forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-        });
+// Cerrar menú al hacer clic en enlace
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
     });
+});
 
     // Lazy loading de imágenes
     const lazyLoadImages = () => {
