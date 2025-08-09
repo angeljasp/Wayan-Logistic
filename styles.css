@@ -58,7 +58,7 @@ header.scrolled {
 }
 
 header.scrolled .logo img {
-    height: 70px;
+    height: 40px;
 }
 
 /* NAVEGACIÓN - ACTUALIZADO */
@@ -620,7 +620,7 @@ footer {
 }
 
 .footer-logo img {
-    height: 200px;
+    height: 300px;
     width: auto;
 }
 
