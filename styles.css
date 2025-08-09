@@ -46,7 +46,7 @@ header {
 
 /* LOGO PRINCIPAL GRANDE */
 .logo img {
-    height: 100px;
+    height: 150px;
     width: auto;
     transition: all 0.3s ease;
 }
