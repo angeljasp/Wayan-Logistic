@@ -46,7 +46,7 @@ header {
 
 /* LOGO PRINCIPAL GRANDE */
 .logo img {
-    height: 150px;
+    height: 200px;
     width: auto;
     transition: all 0.3s ease;
 }
@@ -620,7 +620,7 @@ footer {
 }
 
 .footer-logo img {
-    height: 120px;
+    height: 200px;
     width: auto;
 }
 
